@@ -1,0 +1,23 @@
+def binary_search(arr, item, start, end):
+    while start < end:
+        mid = (start + end) // 2
+        if arr[mid] < item:
+            start = mid + 1
+        else:
+            end = mid
+    return start
+
+def binary_insertion_sort(arr):
+    for i in range(1, len(arr)):
+        selected = arr[i]
+        j = i - 1
+        loc = binary_search(arr, selected, 0, j + 1)
+        while j >= loc:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = selected
+
+# Example usage:
+arr = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+binary_insertion_sort(arr)
+print("Sorted array:", arr)
